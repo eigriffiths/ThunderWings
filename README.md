@@ -32,3 +32,4 @@ These instructions will get you a copy of the project up and running on your loc
 
 - Paginiation is defaulted to page number 1 and a page size of 10
 - The solution uses an SQLite db in the root of the API project. If the database is removed it will be recreated and re-seeded with aircraft data on startup. 
+- Commit history is broken up by task. 
