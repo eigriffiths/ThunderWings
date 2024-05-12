@@ -1,4 +1,6 @@
 ﻿using System.Text.Json;
+using ThunderWings.Core.Services;
+using ThunderWings.Core.Services.Interfaces;
 using ThunderWings.Repo.DAL;
 using ThunderWings.Repo.Models;
 
@@ -6,6 +8,11 @@ namespace ThunderWings.Api.Helpers
 {
     public static class ServiceConfigurationHelper
     {
+        public static void RegisterTypes(this IServiceCollection services)
+        {
+            services.AddScoped<IAircraftService, AircraftService>();
+        }
+
         public static void SeedAircraftData(this IApplicationBuilder app)
         {
             using (var serviceScope = app.ApplicationServices
