@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThunderWings.Core", "Thunde
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThunderWings.Repo", "ThunderWings.Repo\ThunderWings.Repo.csproj", "{AF17EC49-346C-4B65-B954-81F75F6EDC22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThunderWings.Tests", "ThunderWings.Tests\ThunderWings.Tests.csproj", "{91652D8E-A3F9-4169-AC05-6793688A506F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{AF17EC49-346C-4B65-B954-81F75F6EDC22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF17EC49-346C-4B65-B954-81F75F6EDC22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF17EC49-346C-4B65-B954-81F75F6EDC22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91652D8E-A3F9-4169-AC05-6793688A506F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91652D8E-A3F9-4169-AC05-6793688A506F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91652D8E-A3F9-4169-AC05-6793688A506F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91652D8E-A3F9-4169-AC05-6793688A506F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

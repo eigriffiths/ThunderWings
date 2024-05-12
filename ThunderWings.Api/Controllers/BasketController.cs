@@ -16,7 +16,6 @@ namespace ThunderWings.Api.Controllers
         {
             _basketService = basketService;
             _checkoutService = checkoutService;
-
         }
 
         [HttpGet]

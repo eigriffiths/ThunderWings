@@ -19,9 +19,18 @@ namespace ThunderWings.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAircraft([FromQuery] AircraftFilterParams aircraftFilterParams)
         {
-            var aircraft = await _aircraftService.GetAllAircraft(aircraftFilterParams);
+            try
+            {
+                var aircraft = await _aircraftService.GetAllAircraft(aircraftFilterParams);
 
-            return Ok(aircraft);
+                return Ok(aircraft);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "An error occurred while retrieving a list of aircraft.");
+            }
+
         }
     }
 }
