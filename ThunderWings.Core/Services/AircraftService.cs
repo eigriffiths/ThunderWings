@@ -62,5 +62,12 @@ namespace ThunderWings.Core.Services
 
             return _mapper.Map<List<AircraftDto>>(aircraft);
         }
+
+        public async Task<AircraftDto> GetAircraftById(int id)
+        {
+            var aircraft = await Get(id);
+
+            return _mapper.Map<AircraftDto>(aircraft);
+        }
     }
 }

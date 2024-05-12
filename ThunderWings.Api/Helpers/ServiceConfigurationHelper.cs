@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 using ThunderWings.Core.Services;
 using ThunderWings.Core.Services.Interfaces;
 using ThunderWings.Repo.DAL;
@@ -12,6 +13,7 @@ namespace ThunderWings.Api.Helpers
         {
             services.AddScoped<IAircraftService, AircraftService>();
             services.AddScoped<IBasketService, BasketService>();
+            services.AddScoped<IBasketItemService, BasketItemService>();
         }
 
         public static void SeedAircraftData(this IApplicationBuilder app)
@@ -36,6 +38,20 @@ namespace ThunderWings.Api.Helpers
                         context.Aircraft.AddRange(aircraft);
                         context.SaveChanges();
                     }
+                }
+            }
+        }
+
+        // EF migration
+        public static void MigrateDatabase(this IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
+                {
+                    context.Database.Migrate();
                 }
             }
         }

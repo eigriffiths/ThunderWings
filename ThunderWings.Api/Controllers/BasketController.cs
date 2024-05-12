@@ -16,12 +16,20 @@ namespace ThunderWings.Api.Controllers
             _basketService = basketService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetBasket()
+        {
+            var basket = await _basketService.GetCurrentBasket();
+
+            return Ok(basket);
+        }
+
         [HttpPost]
         public IActionResult AddToBasket(int aircraftId, int quantity)
         {
             try
             {
-                _basketService.AddItemToBasket(aircraftId, quantity);
+                _basketService.AddItemToPersistedBasket(aircraftId, quantity);
 
                 return Ok();
             }
@@ -33,15 +41,15 @@ namespace ThunderWings.Api.Controllers
         }
 
         [HttpDelete]
-        public IActionResult RemoveFromBasket(int aircraftId)
+        public async Task<IActionResult> RemoveFromBasket(int aircraftId)
         {
             try
             {
-                _basketService.RemoveItemFromBasket(aircraftId);
+                await _basketService.RemoveItemFromPersistedBasket(aircraftId);
 
                 return Ok();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "An error occurred while removing the item from the basket.");

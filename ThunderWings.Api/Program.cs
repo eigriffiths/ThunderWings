@@ -48,6 +48,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// if the database does not exist, create it and seed it with data
+app.MigrateDatabase();
 app.SeedAircraftData();
 
 app.UseSession();
