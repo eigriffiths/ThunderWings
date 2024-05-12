@@ -10,10 +10,13 @@ namespace ThunderWings.Api.Controllers
     public class BasketController : ControllerBase
     {
         private readonly IBasketService _basketService;
+        private readonly ICheckoutService _checkoutService;
 
-        public BasketController(IBasketService basketService)
+        public BasketController(IBasketService basketService, ICheckoutService checkoutService)
         {
             _basketService = basketService;
+            _checkoutService = checkoutService;
+
         }
 
         [HttpGet]
@@ -24,7 +27,7 @@ namespace ThunderWings.Api.Controllers
             return Ok(basket);
         }
 
-        [HttpPost]
+        [HttpPost("items")]
         public IActionResult AddToBasket(int aircraftId, int quantity)
         {
             try
@@ -40,7 +43,7 @@ namespace ThunderWings.Api.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("items/{aircraftId}")]
         public async Task<IActionResult> RemoveFromBasket(int aircraftId)
         {
             try
@@ -53,6 +56,27 @@ namespace ThunderWings.Api.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "An error occurred while removing the item from the basket.");
+            }
+        }
+
+        [HttpPost("checkout")]
+        // basketId defaulted to 1 for task demo 
+        public IActionResult Checkout(int basketId = 1)
+        {
+            try
+            {
+                var basket = _checkoutService.ValidateBasket(basketId);
+
+                var total = _checkoutService.CalculateBasketTotal(basket);
+
+                var receipt = _checkoutService.GenerateReceipt(basket);
+
+                return Ok(receipt);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "An error occurred while attempting to checkout.");
             }
         }
     }

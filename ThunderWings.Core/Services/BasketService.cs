@@ -133,7 +133,8 @@ namespace ThunderWings.Core.Services
         }
 
         // Task 5 GetPersistedBasket using Entity Framework
-        private async Task<Basket> GetPersistedBasket(int basketId = 1)
+        // basketId defaulted to 1 for task demo 
+        public async Task<Basket> GetPersistedBasket(int basketId = 1)
         {
             var basket = await Get(basketId, b => b.Items);
 

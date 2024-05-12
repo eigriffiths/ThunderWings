@@ -1,5 +1,4 @@
-﻿
-namespace ThunderWings.Core.Services
+﻿namespace ThunderWings.Core.Services.Interfaces
 {
     public interface IBasketItemService
     {

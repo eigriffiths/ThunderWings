@@ -14,6 +14,7 @@ namespace ThunderWings.Api.Helpers
             services.AddScoped<IAircraftService, AircraftService>();
             services.AddScoped<IBasketService, BasketService>();
             services.AddScoped<IBasketItemService, BasketItemService>();
+            services.AddScoped<ICheckoutService, CheckoutService>();
         }
 
         public static void SeedAircraftData(this IApplicationBuilder app)
