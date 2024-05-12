@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ThunderWings.Core.DTO.Aircraft;
 using ThunderWings.Core.Services.Interfaces;
 
 namespace ThunderWings.Api.Controllers
@@ -16,9 +17,9 @@ namespace ThunderWings.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAircraft()
+        public async Task<IActionResult> GetAircraft([FromQuery] AircraftFilterParams aircraftFilterParams)
         {
-            var aircraft = await _aircraftService.GetAllAircraft();
+            var aircraft = await _aircraftService.GetAllAircraft(aircraftFilterParams);
 
             return Ok(aircraft);
         }
