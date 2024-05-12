@@ -22,11 +22,16 @@ builder.Services.AddSingleton(mapper);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+
 builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseSqlite(@"Data Source=thunderwings.db"));
 
 // register types
 builder.Services.RegisterTypes();
+
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -44,5 +49,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.SeedAircraftData();
+
+app.UseSession();
 
 app.Run();

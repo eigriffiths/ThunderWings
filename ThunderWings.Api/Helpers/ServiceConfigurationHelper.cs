@@ -11,6 +11,7 @@ namespace ThunderWings.Api.Helpers
         public static void RegisterTypes(this IServiceCollection services)
         {
             services.AddScoped<IAircraftService, AircraftService>();
+            services.AddScoped<IBasketService, BasketService>();
         }
 
         public static void SeedAircraftData(this IApplicationBuilder app)
